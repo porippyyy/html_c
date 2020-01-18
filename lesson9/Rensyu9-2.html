@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./Sample.css">
+    <title>9-2</title>
+    <script type="text/javascript">
+    function search()
+    {
+      var  obj= document.getElementById("btn");
+      obj.addEventListener("click" , function (){
+        var e = document.getElementById("heading");
+        var str = e.innerHTML;
+          window.alert(str);
+      }, false );
+    }
+    </script>
+  </head>
+  <body onload="search()">
+  <h1 id="heading">商品の紹介</h1>
+  <input type="button" id="btn" value="見出しを調べる"/>
+  </body>
+</html>

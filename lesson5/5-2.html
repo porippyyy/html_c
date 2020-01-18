@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="stylesheet" href="Sample.css">
+    <meta charset="utf-8">
+    <title>5-2</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+    var today=new Date();
+    var date=today.getDate();
+    today.setDate(today.getDate()+1);
+    var tomorrow=today.getDate();
+  </script>
+  <h1>
+    <script type="text/javascript">
+    document.writeln("今日は"+date+"日です。<br>");
+    document.writeln("明日は"+tomorrow+"日です。<br>");
+    </script>
+  </h1>
+</body>
+</html>

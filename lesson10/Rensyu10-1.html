@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="stylesheet" href="./Sample.css">
+    <meta charset="utf-8">
+    <title>10-1</title>
+    <script type="text/javascript">
+    function init(){
+      var c =document.getElementById("canvas");
+      var cnt=c.getContext("2d");
+      cnt.shadowBlur=10;
+      cnt.shadowColor="#000000";
+
+      cnt.fillStyle="#99CC33";
+      cnt.fillRect(30,30,30,30);
+
+
+      cnt.fillStyle="#CC3333";
+      cnt.fillRect(70,30,30,30);
+
+
+      cnt.fillStyle="#FF9900";
+      cnt.fillRect(110,30,30,30);
+
+
+    }
+    </script>
+  </head>
+  <body onload="init()">
+    <h1>商品紹介</h1>
+    <canvas id="canvas"></canvas>
+  </body>
+</html>

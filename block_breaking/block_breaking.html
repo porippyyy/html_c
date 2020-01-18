@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <link rel="stylesheet" href="Sample2.css">
+    <meta charset="utf-8">
+    <title>kadai</title>
+    <script type="text/javascript">
+    var x=300;
+    var y=300;
+    var r=10;
+    var dx=(Math.random()*100)%4-2;
+    var dy=2;//(Math.random()*100)%4+2;
+    var mx;
+    var i=0;
+    var b=0;
+    var a=[0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    var k=0;
+    function init(){
+      var t=window.setInterval("draw()",0);
+    }
+    function draw(){
+      var c=document.getElementById("canvas");
+      var w=c.width;
+      var h=c.height;
+      var count=0;
+      var cnt=c.getContext("2d");
+      cnt.clearRect(0,0,w-0.1,h-0.1);
+      cnt.clearRect(350,100,100,20);
+      cnt.strokeRect(0,0,w,h);
+      cnt.strokeRect(0,0,w,h);
+      cnt.shadowBlur=5;
+      cnt.shadowColor="#000000";
+      cnt.fillStyle="#FFFF00";
+      cnt.beginPath();
+      cnt.arc(x,y,r,0,Math.PI*2,false);
+      cnt.strokeRect(mx-50,700,100,0);
+      for(i=0; i<7; i++){
+      if(a[i]==0){
+        cnt.strokeRect(3+i*99,100,99,20);
+        cnt.fillRect(3+i*99,100,99,20);
+      }
+    }
+    for(i=7; i<14; i++){
+      if(a[i]==0){
+        cnt.strokeRect(3+((i-7)*99),125,99,20);
+        cnt.fillRect(3+((i-7)*99),125,99,20);
+      }
+    }
+    for(i=7; i<14; i++){//下段右判定
+      if(count==0 && a[i]==0 && (y-r<145 && 125<y+r && 97+(i-7)*99<=x-r && 102+(i-7)*99>=x-r)){
+        dx=-dx;
+        a[i]=1;
+        count=1;
+      }
+    }
+    for(i=7; i<14; i++){//下段下判定
+      if(count==0 && a[i]==0 && (y<145+r && 140+r<y && 3+(i-7)*99<x+r && 102+(i-7)*99>x-r)){
+        dy=-dy;
+        a[i]=1;
+        count=1;
+      }
+    }
+
+    for(i=7; i<14; i++){//下段左判定
+      if(count==0 && a[i]==0 && (y-r<146 && 125<y+r && 3+(i-7)*99<=x+r && 9+(i-7)*99>=x+r)){
+        dx=-dx;
+        a[i]=1;
+        count=1;
+      }
+    }
+    for(i=0; i<7; i++){//上段下判定
+      if(count==0 && a[i]==0 && (y<120+r && 115+r<y && 3+i*99<x+r && 102+i*99>x-r)){
+        dy=-dy;
+        a[i]=1;
+        count=1;
+      }
+    }
+    for(i=0; i<7; i++){//上段右判定
+      if(count==0 && a[i]==0 && (y-r<120 && 100<y+r && 97+i*99<=x-r && 102+i*99>=x-r)){
+        dx=-dx;
+        a[i]=1;
+        count=1;
+      }
+    }
+
+    for(i=0; i<7; i++){//上段上当たり判定
+      if(count==0 && a[i]==0 && (y<100-r && 95-r<y && 3+i*99<x+r && 102+i*99>x-r)){
+        dy=-dy;
+        a[i]=1;
+        count=1;
+      }
+    }
+    for(i=7; i<14; i++){//下段上判定
+      if(count==0 && a[i]==0 && (y<125-r && 120-r<y && 3+(i-7)*99<x+r && 102+(i-7)*99>x-r)){
+        dy=-dy;
+        a[i]=1;
+        count=1;
+      }
+    }
+
+
+    for(i=0; i<7; i++){//上段左判定
+      if(count==0 && a[i]==0 && (y-r<120 && 100<y+r && 3+i*99<=x+r && 8+i*99>=x+r)){
+        dx=-dx;
+        a[i]=1;
+        count=1;
+      }
+    }
+
+
+      cnt.closePath();
+      cnt.fillStyle="#FF0033";
+      cnt.fill();
+
+      if(x<r || x>w-r) dx= -dx;
+      if(y<715-r && y>700-r && mx-50<x+r && mx+50>x-r){
+        dx=-dx+(Math.random()*100)%2;
+        dy=-dy;
+      }
+      if(y<r) dy= -dy;
+      if(k>500){
+      x=x+dx;
+      y=y+dy;
+    }
+    k++;
+    if(y>h){
+      document.write("お疲れ様でした。".fontsize(7));
+      a.play();
+    }
+    for(i=0; i<14; i++){
+      b=b+a[i];
+    }
+    if(b>=14){
+      document.write("おめでとうございます!!".fontsize(7));
+    }
+    b=0;
+    }
+    function mousemove(e){
+    mx=e.pageX;
+  }
+    </script>
+
+  </head>
+  <body onload="init()">
+
+    <canvas id="canvas" width="700" height="800" onmousemove="mousemove(event);"></canvas>
+  </body>
